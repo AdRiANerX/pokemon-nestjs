@@ -30,7 +30,7 @@ COPY --from=builder /app/dist ./dist
 RUN mkdir -p ./pokedex
 
 COPY --from=builder ./app/dist/ ./app
-COPY ./.env ./app/.env
+COPY .env ./app/.env
 
 # Dar permiso para ejecutar la applicación
 RUN adduser --disabled-password pokeuser

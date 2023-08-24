@@ -26,17 +26,17 @@ RUN yarn install --prod
 
 COPY --from=builder /app/dist ./dist
 
-# # Copiar el directorio y su contenido
-# RUN mkdir -p ./pokedex
+# Copiar el directorio y su contenido
+RUN mkdir -p ./pokedex
 
-# COPY --from=builder ./app/dist/ ./app
-# COPY ./.env ./app/.env
+COPY --from=builder ./app/dist/ ./app
+COPY ./.env ./app/.env
 
-# # Dar permiso para ejecutar la applicación
-# RUN adduser --disabled-password pokeuser
-# RUN chown -R pokeuser:pokeuser ./pokedex
-# USER pokeuser
+# Dar permiso para ejecutar la applicación
+RUN adduser --disabled-password pokeuser
+RUN chown -R pokeuser:pokeuser ./pokedex
+USER pokeuser
 
-# EXPOSE 3000
+EXPOSE 3000
 
 CMD [ "node","dist/main" ]
